@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* Palette: indigo ink (ai-iro) on cool paper, with a kihada-yellow accent */
+:root {
+  --paper: #eef1f4;
+  --surface: #f8fafc;
+  --ink: #15233f;
+  --muted: #56667d;
+  --line: #cdd6e1;
+  --indigo: #2b4c7e;
+  --kihada: #e8a93a;
+  --danger: #b42318;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0e1830;
+    --surface: #142240;
+    --ink: #e4eaf2;
+    --muted: #9aa8bc;
+    --line: #26385e;
+    --indigo: #8fb0e0;
+    --kihada: #f0bd55;
+    --danger: #f97066;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-indigo: var(--indigo);
+  --color-kihada: var(--kihada);
+  --color-danger: var(--danger);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Narrow, tall display cut of Bricolage Grotesque for the hero name */
+@utility type-condensed {
+  font-variation-settings: "wdth" 75, "opsz" 96;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  ::selection {
+    background: var(--kihada);
+    color: #15233f;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--indigo);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
