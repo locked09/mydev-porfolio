@@ -64,3 +64,11 @@ export type SocialLink = {
   label: string;
   href: string;
 };
+
+export interface UdemyCourse {
+  title: string;
+  instructor: string;
+  organization?: string;
+  layer: StackLayer["id"];
+  certificateUrl?: string; // optional link to the Udemy certificate
+}

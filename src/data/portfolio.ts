@@ -5,6 +5,7 @@ import type {
   Project,
   SocialLink,
   StackLayer,
+  UdemyCourse,
 } from "@/types";
 
 /**
@@ -32,7 +33,7 @@ export const profile: Profile = {
     { label: "Main stack", value: "React, Next.js, TypeScript, NestJS, Prisma" },
     { label: "Also fluent in", value: "PHP Laravel, Ruby on Rails" },
   ],
-  email: "hello@example.com", // TODO: your email
+  email: "jbellen09@gmail.com", // TODO: your email
   banner: "/images/dsb_banner_blue.png", // TODO: your avatar image
 };
 
@@ -177,4 +178,56 @@ export const experience: ExperienceItem[] = [
 export const socials: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/your-handle" }, // TODO
   { label: "LinkedIn", href: "https://www.linkedin.com/in/your-handle" }, // TODO
+];
+
+/** Completed Udemy courses, each tagged with the stack layer it relates to */
+export const udemyCourses: UdemyCourse[] = [
+  {
+    title: "Advanced CSS and Sass: Flexbox, Grid, Animations and More!",
+    instructor: "Jonas Schmedtmann",
+    layer: "interface",
+  },
+  {
+    title: "Next.js Projects – 9 Projects (Instagram, Google and More)",
+    instructor: "Dr. Sahand Ghavidel",
+    layer: "interface",
+  },
+  {
+    title: "The Complete React Native + Hooks Course",
+    instructor: "Stephen Grider",
+    layer: "interface",
+  },
+  {
+    title: "NodeJS – The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
+    instructor: "Maximilian Schwarzmüller",
+    organization: "Academind",
+    layer: "api",
+  },
+  {
+    title: "NestJS Zero to Hero – Modern TypeScript Backend Development",
+    instructor: "Ariel Weinberger",
+    layer: "api",
+  },
+  {
+    title: "SQL and PostgreSQL – The Complete Developer's Guide",
+    instructor: "Stephen Grider",
+    layer: "data",
+  },
+  {
+    title: "Docker & Kubernetes: The Practical Guide",
+    instructor: "Maximilian Schwarzmüller",
+    organization: "Academind",
+    layer: "tooling",
+  },
+  {
+    title: "GitHub Actions – The Complete Guide",
+    instructor: "Maximilian Schwarzmüller",
+    organization: "Academind",
+    layer: "tooling",
+  },
+  {
+    title: "Ultimate AWS Certified Cloud Practitioner CLF-C02 & Certified Solutions Architect",
+    instructor: "Stéphane Maarek",
+    layer: "tooling",
+  },
 ];

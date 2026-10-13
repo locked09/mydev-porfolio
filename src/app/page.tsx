@@ -4,6 +4,7 @@ import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
+import { UdemyCourses } from "@/components/sections/UdemyCourses";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Skills />
       <Projects />
       <Experience />
+      <UdemyCourses />
       <Contact />
     </>
   );
