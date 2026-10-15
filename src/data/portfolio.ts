@@ -3,6 +3,7 @@ import type {
   NavItem,
   Profile,
   Project,
+  SideProject,
   SocialLink,
   StackLayer,
   UdemyCourse,
@@ -10,8 +11,6 @@ import type {
 
 /**
  * All site content lives here.
- * The copy is a starting draft: replace the sample projects, companies,
- * dates, links and email with your own before deploying.
  */
 
 export const profile: Profile = {
@@ -33,8 +32,8 @@ export const profile: Profile = {
     { label: "Main stack", value: "React, Next.js, TypeScript, NestJS, Prisma" },
     { label: "Also fluent in", value: "PHP Laravel, Ruby on Rails" },
   ],
-  email: "jbellen09@gmail.com", // TODO: your email
-  banner: "/images/dsb_banner_blue.png", // TODO: your avatar image
+  email: "jbellen09@gmail.com",
+  banner: "/images/dsb_banner_blue.png",
 };
 
 export const navItems: NavItem[] = [
@@ -42,6 +41,7 @@ export const navItems: NavItem[] = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Work" },
   { id: "experience", label: "Experience" },
+  { id: "courses", label: "Courses" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -81,103 +81,189 @@ export const stackLayers: StackLayer[] = [
   },
 ];
 
-// Sample projects: replace with your own work.
+/**
+ * Projects, newest first, grouped by the company they were built for.
+ * Stacks marked TODO are my best guess from the era and company: confirm them.
+ */
 export const projects: Project[] = [
+  // GSS Lab. Inc. — Full-Stack Developer, Aug 2023 – Jul 2026
   {
-    slug: "booking-platform",
-    title: "Shared-space booking platform",
-    year: "2025",
-    role: "Lead fullstack developer",
+    slug: "space-reserve",
+    title: "Space Reserve",
+    year: "2023–2026",
+    role: "Full-Stack Developer · GSS Lab. Inc.",
     summary:
-      "A reservation system for meeting rooms and sports facilities, with a web dashboard for staff and a mobile app for members. The interface is fully in Japanese.",
+      "An online booking system that helps users find and reserve business establishments across Japan.",
     details: [
-      "Modelled time-slot availability so double bookings are rejected at the database level, not just in the UI.",
-      "Shared TypeScript types between the Next.js web app, the React Native app and the NestJS API in one monorepo.",
-      "Built the admin calendar view staff use to approve, move and cancel bookings.",
+      "Google Maps integration so users can search and browse venues by location.",
+      "Web dashboard and mobile app sharing one TypeScript codebase.",
     ],
-    stack: ["Next.js", "React Native", "NestJS", "Prisma", "PostgreSQL"],
-    links: [{ label: "View case study", href: "#" }],
+    stack: ["Next.js", "React Native", "NestJS", "Prisma", "PostgreSQL", "Google Maps API"],
   },
   {
-    slug: "inventory-dashboard",
-    title: "Inventory dashboard for a retail chain",
-    year: "2023",
-    role: "Fullstack developer",
+    slug: "affiliate-marketing-system",
+    title: "Affiliate Marketing System",
+    year: "2023–2026",
+    role: "Full-Stack Developer · GSS Lab. Inc.",
     summary:
-      "Replaced a set of spreadsheets with a live dashboard showing stock levels across branches, with alerts when items run low.",
+      "A web application that supports and promotes affiliate marketing for an NFT marketplace focused on digital currencies.",
     details: [
-      "Migrated five years of spreadsheet history into a normalised schema.",
-      "Cut the weekly stock report from half a day of manual work to an automatic export.",
+      "Tracks referrals and affiliate activity for marketplace partners.",
     ],
-    stack: ["Laravel", "React", "MySQL"],
+    stack: ["Next.js", "NestJS", "Prisma", "PostgreSQL"], // TODO: confirm
   },
   {
-    slug: "clinic-appointments",
-    title: "Clinic appointment system",
-    year: "2021",
-    role: "Backend developer",
+    slug: "entame-choice",
+    title: "Entame-Choice.com",
+    year: "2023–2026",
+    role: "Full-Stack Developer · GSS Lab. Inc.",
     summary:
-      "Online booking and SMS reminders for a group of outpatient clinics, built to reduce no-shows.",
+      "A platform for Japanese artists to manage online and in-venue lessons, as well as event reservations for theaters, orchestras and concerts.",
     details: [
-      "Designed the scheduling rules for doctors who work across multiple branches.",
-      "Added reminder jobs with retry handling so a failed SMS never silently disappears.",
+      "Lesson scheduling for both online sessions and physical venues.",
+      "Event reservation flow for theaters, orchestras and concerts.",
     ],
-    stack: ["Ruby on Rails", "PostgreSQL", "Sidekiq"],
+    stack: ["Next.js", "NestJS", "Prisma", "PostgreSQL"], // TODO: confirm
+    links: [{ label: "Visit site", href: "https://entame-choice.com" }],
+  },
+
+  // Metromart Inc. — Mid React Engineer, Oct 2022 – Jul 2023
+  {
+    slug: "merchant-dashboard",
+    title: "Merchant Dashboard",
+    year: "2022–2023",
+    role: "Mid React Engineer · Metromart Inc.",
+    summary:
+      "A web application for managing job orders and product inventory across affiliated stores.",
+    details: [
+      "Frontend built with ReactJS and TypeScript on top of a Ruby on Rails backend.",
+    ],
+    stack: ["React", "TypeScript", "Ruby on Rails"],
+  },
+
+  // Squadzip — Application Developer, Jun 2021 – Oct 2022
+  {
+    slug: "squadzip",
+    title: "Squadzip.com",
+    year: "2021–2022",
+    role: "Application Developer · Squadzip",
+    summary:
+      "A next-generation business development platform for Sales and Operations teams.",
+    details: [
+      "Built with ReactJS and Redux on the frontend and Ruby on Rails on the backend.",
+    ],
+    stack: ["React", "Redux", "Ruby on Rails"],
+    links: [{ label: "Visit site", href: "https://squadzip.com" }],
+  },
+
+  // Security Bank Corporation — Developer, Jun 2018 – Feb 2021
+  {
+    slug: "salary-advance-checker",
+    title: "Salary Advance Application Checker",
+    year: "2018–2021",
+    role: "Developer · Security Bank Corporation",
+    summary:
+      "An automated web application for processing personal loan requests submitted by clients via SMS or through the Security Bank website.",
+    details: [
+      "Accepts applications from two channels, SMS and the bank website, into one processing flow.",
+    ],
+    stack: ["PHP Laravel", "MySQL"], // TODO: confirm
   },
   {
-    slug: "cms-migration",
-    title: "Marketing site and CMS migration",
-    year: "2019",
-    role: "Fullstack developer",
+    slug: "online-client-requisition",
+    title: "Online Client Requisition Template System",
+    year: "2018–2021",
+    role: "Developer · Security Bank Corporation",
     summary:
-      "Moved a slow, plugin-heavy site to a headless CMS with statically generated pages.",
+      "A system for managing Security Bank payroll applications submitted by clients.",
     details: [
-      "Kept every old URL working with a redirect map generated from the previous sitemap.",
-      "Brought page load on mid-range phones down from around six seconds to under two.",
+      "Templated requisition forms so client submissions arrive in a consistent format.",
     ],
-    stack: ["Next.js", "Headless CMS", "Vercel"],
+    stack: ["PHP Laravel", "MySQL"], // TODO: confirm
+  },
+
+  // MyClick Technologies Inc. — Web Developer, May 2015 – Jun 2018
+  {
+    slug: "trip-ticket-portal",
+    title: "Trip Ticket Portal",
+    year: "2015–2018",
+    role: "Web Developer · MyClick Technologies Inc.",
+    summary:
+      "A web application for FamilyMart Inc. that lets store personnel create digitally-invoiced goods orders and manage warehouse deliveries.",
+    details: [
+      "Digital invoicing replaced paper goods orders between stores and the warehouse.",
+    ],
+    stack: ["PHP Laravel", "MySQL"], // TODO: confirm
+  },
+  {
+    slug: "inventory-management-system",
+    title: "Inventory Management System",
+    year: "2015–2018",
+    role: "Web Developer · MyClick Technologies Inc.",
+    summary:
+      "An application for FamilyMart Inc. convenience stores to manage inventory and generate sales reports.",
+    details: [
+      "Stock tracking and sales reporting per store.",
+    ],
+    stack: ["PHP Laravel", "MySQL"], // TODO: confirm
   },
 ];
 
-// Sample timeline: replace companies and dates with your own.
 export const experience: ExperienceItem[] = [
   {
-    company: "Japanese IT company",
-    role: "Fullstack Developer",
-    start: "2022",
-    end: "Present",
-    current: true,
+    company: "GSS Lab. Inc.",
+    role: "Full-Stack Developer",
+    start: "Aug 2023",
+    end: "Jul 2026",
     summary:
-      "Building web and mobile products for Japanese clients, from database design to release.",
+      "Built web and mobile products for the Japanese market: Space Reserve, an NFT-marketplace affiliate system, and Entame-Choice.com.",
     highlights: [
-      "Own features across Next.js, NestJS and Prisma.",
-      "Write the technical specs the team builds from.",
+      "Owned features across Next.js, NestJS and Prisma, from database design to release.",
+      "Makati, Metro Manila",
     ],
   },
   {
-    company: "Northbay Digital",
-    role: "Senior Web Developer",
-    start: "2018",
-    end: "2022",
-    summary: "Led small teams delivering client web apps in Laravel and React.",
+    company: "Metromart Inc.",
+    role: "Mid React Engineer",
+    start: "Oct 2022",
+    end: "Jul 2023",
+    summary:
+      "Built the Merchant Dashboard for managing job orders and inventory across affiliated stores.",
+    highlights: ["ReactJS + TypeScript frontend on a Ruby on Rails backend.", "Makati, Metro Manila"],
+  },
+  {
+    company: "Squadzip",
+    role: "Application Developer",
+    start: "Jun 2021",
+    end: "Oct 2022",
+    summary: "Developed Squadzip.com, a business development platform for Sales and Operations teams.",
+    highlights: ["ReactJS, Redux and Ruby on Rails.", "Bangkal, Makati City"],
+  },
+  {
+    company: "Security Bank Corporation",
+    role: "Developer",
+    start: "Jun 2018",
+    end: "Feb 2021",
+    summary:
+      "Built internal tools for loan processing and payroll requisitions.",
     highlights: [
-      "Introduced code review and automated tests to the team.",
-      "Mentored three junior developers.",
+      "Salary Advance Application Checker and the Online Client Requisition Template System.",
+      "Makati City",
     ],
   },
   {
-    company: "Freelance",
+    company: "MyClick Technologies Inc.",
     role: "Web Developer",
-    start: "2015",
-    end: "2018",
-    summary: "Built and maintained sites and booking tools for local businesses.",
-    highlights: ["Shipped projects in PHP Laravel and Ruby on Rails."],
+    start: "May 2015",
+    end: "Jun 2018",
+    summary: "Built store-operations tools for FamilyMart Inc.",
+    highlights: ["Trip Ticket Portal and an Inventory Management System.", "Makati City"],
   },
 ];
 
 export const socials: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/your-handle" }, // TODO
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/your-handle" }, // TODO
+  { label: "GitHub", href: "https://github.com/locked09" }, // TODO
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/diosdado-bellen-jr-021545159" }, // TODO
 ];
 
 /** Completed Udemy courses, each tagged with the stack layer it relates to */
@@ -229,5 +315,34 @@ export const udemyCourses: UdemyCourse[] = [
     title: "Ultimate AWS Certified Cloud Practitioner CLF-C02 & Certified Solutions Architect",
     instructor: "Stéphane Maarek",
     layer: "tooling",
+  },
+];
+
+/** Freelance and personal work that's live on the web */
+export const sideProjects: SideProject[] = [
+  {
+    title: "ICON CLINIC",
+    kind: "freelance",
+    url: "https://www.icon-clinic.com",
+    summary:
+      "Marketing site for a cosmetic surgery clinic in Shibuya, Tokyo: treatment menus with pricing, doctor profile, case gallery, columns and online reservation.",
+    stack: ["Next.js", "TypeScript", "Vercel"], // TODO: confirm
+    year: "2024",
+  },
+  {
+    title: "Natours",
+    kind: "personal",
+    url: "https://project-natours.vercel.app",
+    summary:
+      "Landing page for a fictional tour company, built to practise advanced CSS: animations, custom grid, and a pure-CSS booking popup.",
+    stack: ["HTML", "Sass", "CSS Grid"],
+  },
+  {
+    title: "ExpenseTracker AI",
+    kind: "personal",
+    url: "https://expense-tracker-app-nine-orpin.vercel.app",
+    summary:
+      "Expense tracker with automatic categorisation, spending insights and a dashboard, with an AI assistant you can ask about your own spending.",
+    stack: ["Next.js", "TypeScript", "AI"], // TODO: confirm
   },
 ];

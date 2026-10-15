@@ -35,7 +35,7 @@ export function StackDiagram({ layers }: StackDiagramProps) {
             )}
           >
             <span className="font-display text-xl font-semibold tracking-tight">{layer.name}</span>
-            <span className="text-sm opacity-85">{layer.tools.slice(0, 3).join(", ")}</span>
+            <span className="text-sm opacity-85">{layer.tools.slice(0, 4).join(", ")}</span>
           </motion.li>
         ))}
       </ol>

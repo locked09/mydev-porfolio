@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import { profile } from "@/data/portfolio";
+
+// Nodemailer needs the Node runtime, not Edge.
+export const runtime = "nodejs";
 
 type Payload = {
   name?: unknown;
@@ -11,6 +16,26 @@ type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const asText = (value: unknown) => (typeof value === "string" ? value.trim() : "");
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+function getTransport() {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!user || !pass) return null;
+
+  return nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user, pass },
+  });
+}
 
 export async function POST(request: Request) {
   let body: Payload;
@@ -34,9 +59,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ errors }, { status: 422 });
   }
 
-  // TODO: deliver the message. Options: Resend, Nodemailer + SMTP,
-  // or save it with Prisma and notify yourself.
-  console.info("[contact] new message", { name, email, length: message.length });
+  const transport = getTransport();
+  if (!transport) {
+    console.error("[contact] GMAIL_USER / GMAIL_APP_PASSWORD are not set");
+    return NextResponse.json(
+      { error: `The contact form isn't configured yet. Email ${profile.email} directly.` },
+      { status: 500 },
+    );
+  }
+
+  try {
+    await transport.sendMail({
+      from: `"${name} via portfolio" <${process.env.GMAIL_USER}>`, // Gmail only lets you send as yourself
+      to: profile.email,
+      replyTo: `"${name}" <${email}>`, // so "Reply" in Gmail goes to the sender
+      subject: `Portfolio message from ${name}`,
+      text: `From: ${name} <${email}>\n\n${message}`,
+      html: `<p><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+    });
+  } catch (err) {
+    console.error("[contact] send failed", err);
+    return NextResponse.json(
+      { error: `The message didn't send. Try again, or email ${profile.email}.` },
+      { status: 502 },
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }

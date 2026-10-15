@@ -72,3 +72,14 @@ export interface UdemyCourse {
   layer: StackLayer["id"];
   certificateUrl?: string; // optional link to the Udemy certificate
 }
+
+export type SideProjectKind = "freelance" | "personal";
+
+export interface SideProject {
+  title: string;
+  kind: SideProjectKind;
+  url: string;
+  summary: string;
+  stack: string[];
+  year?: string;
+}
