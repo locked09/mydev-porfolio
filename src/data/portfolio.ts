@@ -24,7 +24,7 @@ export const profile: Profile = {
   about: [
     "I've spent more than ten years shipping web apps, first in PHP Laravel and Ruby on Rails, and these days in TypeScript across the whole stack.",
     "Most days I work in Next.js with the App Router, NestJS and Prisma. I care about clear data models, predictable APIs, and interfaces that stay fast on the phones people actually own.",
-    "Working with a Japanese team, much of the job is careful communication: written specs, edge cases noted before they become bugs, and handover notes the next developer can pick up without a meeting.",
+    "Working with a Japanese team, much of the job is careful communication: written specs, edge cases noted before they become bugs.",
   ],
   facts: [
     { label: "Experience", value: "10+ years" },
